@@ -1,12 +1,14 @@
 # Wake up Render!
 
-This cronjob project is designed to keep a free Render service awake by making a request every 10 minutes. Ideal for preventing a free-tier app from going to sleep.
+This cronjob project is designed to keep a free Render service (or similar platforms) active by sending a request every 10 minutes. It’s ideal for preventing a free-tier app from going into sleep mode.
 
 ## Features
 
--   **Cronjob**: Sends a GET request every 10 minutes to keep a service active.
+-   **Cronjob**: Sends a `GET` request to your specified `URL` (or to this cronjob itself if deployed on a platform to keep it awake) every `N` minutes (default is 10 minutes), ensuring the service stays active!
 
--   **Configurable**: Easily adjustable! You can choose the cronjob URL for to keep awake this job, the URL for your backend, and different time intervals!
+-   **Configurable**: Easily adjustable! You can specify the `URL` for your backend, the cronjob `URL` to keep this job awake, and set different time intervals in **milliseconds**.
+
+-   **Easy to use**: Simply set your `.env` file with three environment variables and run the script!
 
 ## Installation
 
@@ -23,32 +25,30 @@ This cronjob project is designed to keep a free Render service awake by making a
      yarn install
     ```
 
-3. **Configure Environment Variables**: Create a .env file in the root directory and add the endpoint URL you want to keep awake. Additionally you can also choose the milliseconds to call the functions, if you don't choose milliseconds, default will be 10 minutes.
+3. **Configure Environment Variables**: Create a `.env` file in the root directory and add the endpoint `URL` you want to keep awake. You can also specify the interval in milliseconds for the requests. If not provided, the default will be set to 10 minutes.
 
     The name of the variables must to be:
 
     ```bash
     MY_SELF_URL=<THE_URL_FOR_THIS_CRONJOB>
-
     BACKEND_URL=<YOUR_BACKEND_URL>
-
-    MILLISECONDS=<MILLISECONDS> // EG: 600000 for 10 minutes.
+    MILLISECONDS=<MILLISECONDS>
     ```
 
 ## Usage
 
 Run the script with:
 
-    ```bash
-    node main.js
-    ```
+```js
+node main.js
+```
 
 The script will send GET requests to the URL every N or 10 (default) minutes.
 
 ## Dependencies
 
--   node-fetch for HTTP requests.
--   dotenv for managing environment variables.
+-   `https` for HTTP requests.
+-   `dotenv` for managing environment variables.
 
 ## License
 
